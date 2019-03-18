@@ -1,10 +1,18 @@
+const taskList = new TaskList();
 document.addEventListener("DOMContentLoaded", () => {
-  const taskList = new TaskList();
 
   const listContainer = document.getElementById("list");
-  const renderApp = () => (listContainer.innerHTML = taskList.render());
+  const renderApp = () => (listContainer.appendChild(taskList.render()));
 
-  // Add Form Behavior Here!
+  const submitButton = document.getElementById("submit-button")
+  submitButton.addEventListener('click', (ev)=> {
+    ev.preventDefault()
+    
+    listContainer.innerText = ''
+    let newestTask = TaskListItem.newTask()
+    taskList.addTask(newestTask.render())
+    renderApp()
+  })
 
   renderApp()
 });
